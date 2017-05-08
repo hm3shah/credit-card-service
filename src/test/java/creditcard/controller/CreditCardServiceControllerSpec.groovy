@@ -60,14 +60,14 @@ class CreditCardServiceControllerSpec extends Specification {
         def response = mockMvc.perform(post('/creditcards/validate').contentType(MediaType.APPLICATION_JSON).content("{\"creditCardNumber\":\"1\"}")).andReturn().response
 
         then:
-        1 * creditCardValidateProcessor.checkCreditCardValidity(_ as CreditCardInfo) >> new ServiceResponse<CreditCardValidateResponse>(ServiceError.INVALID_CREDIT_CARD_NUMBER_PROVIDED)
+        1 * creditCardValidateProcessor.checkCreditCardValidity(_ as CreditCardInfo) >> new ServiceResponse<CreditCardValidateResponse>(ServiceError.INVALID_CREDIT_CARD_NUMBER_LENGTH)
 
         and:
         response != null
         response.status == 400
         response.getHeader("content-type") == "application/json"
         response.contentAsString != null
-        response.contentAsString == "{\"data\":null,\"error\":{\"code\":\"INVALID_CREDIT_CARD_NUMBER_PROVIDED\",\"message\":\"The requested credit card number is of invalid type\"}}"
+        response.contentAsString == "{\"data\":null,\"error\":{\"code\":\"INVALID_CREDIT_CARD_NUMBER_LENGTH\",\"message\":\"The requested credit card number length is invalid\"}}"
     }
 
     def "test empty credit card number"() {

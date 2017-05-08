@@ -17,7 +17,7 @@ public class CreditCardValidateProcessor {
             return new ServiceResponse<CreditCardValidateResponse>(ServiceError.EMPTY_CREDIT_CARD_VALIDATION_PAYLOAD);
         } else if (creditCardInfo.getCreditCardNumber().length() < 16) {
             log.debug("Invalid credit card number length:{}", creditCardInfo);
-            return new ServiceResponse<CreditCardValidateResponse>(ServiceError.INVALID_CREDIT_CARD_NUMBER_PROVIDED);
+            return new ServiceResponse<CreditCardValidateResponse>(ServiceError.INVALID_CREDIT_CARD_NUMBER_LENGTH);
         } else {
             return new ServiceResponse<CreditCardValidateResponse>(checkCreditCardValidity(creditCardInfo.getCreditCardNumber()));
         }

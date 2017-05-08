@@ -21,7 +21,7 @@ class CreditCardValidateProcessorSpec extends Specification {
     ServiceResponse<ServiceError> emptyCreditCardNumberError = new ServiceResponse<>(ServiceError.EMPTY_CREDIT_CARD_VALIDATION_PAYLOAD)
 
     @Shared
-    ServiceResponse<ServiceError> invalidCreditCardNumberError = new ServiceResponse<>(ServiceError.INVALID_CREDIT_CARD_NUMBER_PROVIDED)
+    ServiceResponse<ServiceError> invalidCreditCardNumberError = new ServiceResponse<>(ServiceError.INVALID_CREDIT_CARD_NUMBER_LENGTH)
 
     def "test legit credit card numbers"() {
         setup:

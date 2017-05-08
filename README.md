@@ -9,13 +9,21 @@
     
     ```
     curl -X POST -H "Content-Type: application/json" \
-    -H "Cache-Control: no-cache" -d '{"creditCardNumber":"3010101010101010"}' "http://localhost:8080/creditcards/validate"
+    -d '{"creditCardNumber":"3010101010101010"}' "http://localhost:8080/creditcards/validate"
     
     Response:
     {"data":{"valid":true},"error":null}
     
-    curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cac01010101"}' "http://localhost:8080/creditcards/validate"
-    {"data":null,"error":{"code":"INVALID_CREDIT_CARD_NUMBER_PROVIDED","message":"The requested credit card number is of invalid type"}}
+   curl -X POST -H "Content-Type: application/json" \
+   -d '{"creditCardNumber":"301010101010101"}' "http://localhost:8080/creditcards/validate"
+   
+   Response:
+   {"data":null,"error":{"code":"INVALID_CREDIT_CARD_NUMBER_PROVIDED","message":"The requested credit card number is of invalid type"}}
+   
+   curl -X POST -H "Content-Type: application/json" "http://localhost:8080/creditcards/validate"
+   
+   Response:
+   {"data":null,"error":{"code":"EMPTY_CREDIT_CARD_VALIDATION_PAYLOAD","message":"Empty payload provided for credit card validation"}}
     ```
    
 - Improvements
